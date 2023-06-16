@@ -255,6 +255,7 @@ local Window = {}; do
 			return nwSection
 		end
 		function Tab:Show()
+			if self.Visible then return end
 			local tInfo = TweenInfo.new(0.5, Enum.EasingStyle.Cubic, Enum.EasingDirection.InOut, 0, false, 0)
 			local t = Services.TweenService:Create(self.UI.Dark, tInfo, {BackgroundTransparency = 1})
 			local t2 = Services.TweenService:Create(self.UI, tInfo, {Size = UDim2.new(0.114, 0, 0, 26)})
@@ -270,6 +271,7 @@ local Window = {}; do
 			end
 		end
 		function Tab:Hide()
+			if not self.Visible then return end
 			local tInfo = TweenInfo.new(0.5, Enum.EasingStyle.Cubic, Enum.EasingDirection.InOut, 0, false, 0)
 			local t = Services.TweenService:Create(self.UI.Dark, tInfo, {BackgroundTransparency = 0.75})
 			local t2 = Services.TweenService:Create(self.UI, tInfo, {Size = UDim2.new(0, 26, 0, 26)})
