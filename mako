@@ -241,8 +241,12 @@ local Window = {}; do
 		end
 		function Tab:CreateSection(name, image)
 			local nwSection = setmetatable({}, Section)
+			local frame = Instance.new("Frame")
+			frame.Size = UDim2.new(1, 0, 0, 0)
+			frame.BackgroundTransparency = 1
 			nwSection.UI = Objects.Props.Section:Clone()
 			nwSection.UI.Title.Text = name
+			nwSection.Frame = frame
 			nwSection.UI.Image.Image = "rbxassetid://"..tostring(image)
 			nwSection.Side = self.CurrentSide
 			nwSection.Tab = self
@@ -260,7 +264,9 @@ local Window = {}; do
 			self.UI.Title.Visible = true
 			self.Visible = true
 			for index, section in pairs(self.Sections) do
-				section.UI.Parent = self.Window.Frame.SectionsBG.Sections[section.Side]	
+				section.UI.Parent = self.Window.Frame.SectionsBG.Sections[section.Side]
+				section.Frame.Parent = self.Window.Frame.SectionsBG.Sections[section.Side]
+				section.Frame.Size = UDim2.new(1, 0, 0, section.UI.Main.AbsoluteSize.Y - 10)
 			end
 		end
 		function Tab:Hide()
