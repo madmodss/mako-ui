@@ -282,6 +282,7 @@ local Window = {}; do
 			self.UI.Title.Visible = false
 			for index, section in pairs(self.Sections) do
 				section.UI.Parent = nil
+				section.Frame.Parent = nil
 			end
 		end
 	end
