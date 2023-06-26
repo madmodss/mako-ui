@@ -354,10 +354,9 @@ function MakoLib:CreateWindow(data)
 	end
 	nwWindow.UI.Frame.Topbar.CloseButton.MouseButton1Click:Connect(function()
 		nwWindow.UI.Enabled = false
-		local e; e = Services.UserInputService.InputBegan:Connect(function(input)
+		local e = Services.UserInputService.InputBegan:Connect(function(input)
 			if input.KeyCode == Enum.KeyCode.RightShift then
 				nwWindow.UI.Enabled = true
-				e:Disconnect()
 			end
 		end)
 	end)
