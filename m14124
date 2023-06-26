@@ -5,7 +5,7 @@
 --]]
 
 local MakoLib = {}
-local Objects = (game:GetService("RunService"):IsStudio() and game.ReplicatedStorage.MakoUI) or game:GetObjects("rbxassetid://13874998303")[1]
+local Objects = (game:GetService("RunService"):IsStudio() and game.ReplicatedStorage.MakoUI) or game:GetObjects("rbxassetid://13764298778")[1]
 local MainColor = Color3.fromRGB(247, 64, 103)
 local Services = setmetatable({}, {
 	__index = function(self, key)
@@ -352,20 +352,15 @@ function MakoLib:CreateWindow(data)
 			nwWindow.UI.Parent = Player.PlayerGui 
 		end
 	end
-
 	nwWindow.UI.Frame.Topbar.CloseButton.MouseButton1Click:Connect(function()
 		nwWindow.UI.Enabled = false
-		end)
-
-		local e; e = Services.UserInputService.InputBegan:Connect(function(input)
-			local UserInputService = game:GetService("UserInputService")
-			UserInputService.InputBegan:Connect(function(Input)
-			if input.KeyCode == Enum.KeyCode.LeftControl then
-				nwWindow.UI.Enabled = true
-				e:Disconnect()
-			end
-		end)
-
+	end)
+	local e; e = Services.UserInputService.InputBegan:Connect(function(input)
+		if input.KeyCode == Enum.KeyCode.RightShift then
+			nwWindow.UI.Enabled = true
+			e:Disconnect()
+		end
+	end)
 	local isMinimized = false
 	nwWindow.UI.Frame.Topbar.MinimizeButton.MouseButton1Click:Connect(function()
 		if not isMinimized then
