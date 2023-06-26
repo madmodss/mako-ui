@@ -352,14 +352,20 @@ function MakoLib:CreateWindow(data)
 			nwWindow.UI.Parent = Player.PlayerGui 
 		end
 	end
+
 	nwWindow.UI.Frame.Topbar.CloseButton.MouseButton1Click:Connect(function()
 		nwWindow.UI.Enabled = false
-		local e = Services.UserInputService.InputBegan:Connect(function(input)
-			if input.KeyCode == Enum.KeyCode.RightShift then
+		end)
+
+		local e; e = Services.UserInputService.InputBegan:Connect(function(input)
+			local UserInputService = game:GetService("UserInputService")
+			UserInputService.InputBegan:Connect(function(Input)
+			if input.KeyCode == Enum.KeyCode.LeftControl then
 				nwWindow.UI.Enabled = true
+				e:Disconnect()
 			end
 		end)
-	end)
+
 	local isMinimized = false
 	nwWindow.UI.Frame.Topbar.MinimizeButton.MouseButton1Click:Connect(function()
 		if not isMinimized then
